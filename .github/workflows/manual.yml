@@ -1,0 +1,20 @@
+name: Run Java Tests
+
+on:
+  workflow_dispatch:  # This allows manual triggering of the workflow
+
+jobs:
+  test:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+
+      - name: Build and Test
+        run: mvn clean test
