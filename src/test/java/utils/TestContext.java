@@ -46,8 +46,8 @@ public class TestContext {
 
 
     // Getter and Setter for JavascriptExecutor
-    public static JavascriptExecutor getJsExecutor() {
-        return jsExecutorThreadLocal.get();
+    public static Scroll_Actions getJsExecutor() {
+        return new Scroll_Actions(TestContext.getDriver()); 
        
     }
 

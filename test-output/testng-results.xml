@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-11-21T12:35:20 IST" name="Suite" finished-at="2024-11-21T12:36:15 IST" duration-ms="54426">
+  <suite started-at="2024-11-21T13:17:26 IST" name="Suite" finished-at="2024-11-21T13:17:50 IST" duration-ms="24001">
     <groups>
     </groups>
-    <test started-at="2024-11-21T12:35:20 IST" name="LoginTest_Chrome" finished-at="2024-11-21T12:36:15 IST" duration-ms="54426">
+    <test started-at="2024-11-21T13:17:26 IST" name="LoginTest_Chrome" finished-at="2024-11-21T13:17:50 IST" duration-ms="24001">
       <class name="testPackage.TC_002_Template">
-        <test-method is-config="true" signature="startReports()[pri:0, instance:testPackage.TC_002_Template@49e53c76]" started-at="2024-11-21T12:35:20 IST" name="startReports" finished-at="2024-11-21T12:35:20 IST" duration-ms="421" status="PASS">
+        <test-method is-config="true" signature="startReports()[pri:0, instance:testPackage.TC_002_Template@17f9d882]" started-at="2024-11-21T13:17:26 IST" name="startReports" finished-at="2024-11-21T13:17:26 IST" duration-ms="549" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startReports -->
-        <test-method is-config="true" signature="testcasedetails()[pri:0, instance:testPackage.TC_002_Template@49e53c76]" started-at="2024-11-21T12:35:20 IST" name="testcasedetails" finished-at="2024-11-21T12:35:20 IST" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="testcasedetails()[pri:0, instance:testPackage.TC_002_Template@17f9d882]" started-at="2024-11-21T13:17:26 IST" name="testcasedetails" finished-at="2024-11-21T13:17:26 IST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testcasedetails -->
-        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:testPackage.TC_002_Template@49e53c76]" started-at="2024-11-21T12:35:22 IST" name="setUp" finished-at="2024-11-21T12:35:34 IST" duration-ms="11782" status="PASS">
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:testPackage.TC_002_Template@17f9d882]" started-at="2024-11-21T13:17:28 IST" name="setUp" finished-at="2024-11-21T13:17:30 IST" duration-ms="2712" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -26,7 +26,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="validate_login(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:testPackage.TC_002_Template@49e53c76]" started-at="2024-11-21T12:35:34 IST" name="validate_login" data-provider="sendData" finished-at="2024-11-21T12:36:15 IST" duration-ms="40953" status="PASS">
+        <test-method signature="validate_login(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:testPackage.TC_002_Template@17f9d882]" started-at="2024-11-21T13:17:30 IST" name="validate_login" data-provider="sendData" finished-at="2024-11-21T13:17:50 IST" duration-ms="20045" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -82,11 +82,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- validate_login -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:testPackage.TC_002_Template@49e53c76]" started-at="2024-11-21T12:36:15 IST" name="tearDown" finished-at="2024-11-21T12:36:15 IST" duration-ms="300" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:testPackage.TC_002_Template@17f9d882]" started-at="2024-11-21T13:17:50 IST" name="tearDown" finished-at="2024-11-21T13:17:50 IST" duration-ms="184" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="stopReports()[pri:0, instance:testPackage.TC_002_Template@49e53c76]" started-at="2024-11-21T12:36:15 IST" name="stopReports" finished-at="2024-11-21T12:36:16 IST" duration-ms="648" status="PASS">
+        <test-method is-config="true" signature="stopReports()[pri:0, instance:testPackage.TC_002_Template@17f9d882]" started-at="2024-11-21T13:17:50 IST" name="stopReports" finished-at="2024-11-21T13:17:51 IST" duration-ms="306" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- stopReports -->

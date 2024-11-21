@@ -76,6 +76,7 @@ public class PG_002_Template extends BaseClass {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
 
 		try {
+			Thread.sleep(2000);
 			addtemplate.click();
 			ExtentReportManager.reportStep(methodName, "pass");
 			TestContext.getLogger().info(methodName);
@@ -122,6 +123,9 @@ public class PG_002_Template extends BaseClass {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
 
 		try {
+			TestContext.getJsExecutor().scrollToElement(jsoncontent);
+			Thread.sleep(8000);
+			System.out.println("Scrolling is happening");
 			jsoncontent.click();
 			ExtentReportManager.reportStep(methodName, "pass");
 			TestContext.getLogger().info(methodName);
@@ -137,7 +141,6 @@ public class PG_002_Template extends BaseClass {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
 
 		try {
-			TestContext.getJsExecutor();
 			jsontextarea.click();
 			jsontextarea.clear();
 			 Json_content jsoncontent = new Json_content(TestContext.getDriver());
