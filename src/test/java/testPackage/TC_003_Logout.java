@@ -31,10 +31,8 @@ public class TC_003_Logout extends BaseClass {
 		                   .Enter_Password(password)
 	                   	   .Click_Login_Button()
 		                   .Verifiy_toast_message(scenario, name, role)
-		                   .Verify_the_Home_Page_URL()
-		                   .Click_Profile()
 		                   .Click_Logout()
-		                   .Verify_the_Logout_URL();
+		                   .Verify_the_URL();
 		
 
 	}

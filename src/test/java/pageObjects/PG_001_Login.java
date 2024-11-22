@@ -43,6 +43,13 @@ public class PG_001_Login extends BaseClass {
 	public WebElement administration;
 	
 
+	@FindBy(xpath = "//i[@class='fas fa-user-circle']")
+	public WebElement profile;	
+	
+	@FindBy(xpath = "//a[@class='dropdown-item font-weight-bold']")
+	public WebElement logout;
+	
+
 
 	public PG_001_Login Enter_User_Name(String userName) {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
@@ -152,28 +159,18 @@ public class PG_001_Login extends BaseClass {
 	}
 	
 	
-	public PG_003_Logout Verify_the_Home_Page_URL(String scenario)
-	{
+	public PG_003_Logout Click_Logout() {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
-		try
-		{
-			
-			String currentUrl = TestContext.getDriver().getCurrentUrl();
-			String homepageURL = "https://staging.msmp.navadhiti.com/mgff/dashboard/";
-			if(currentUrl.equalsIgnoreCase(homepageURL))
-			{
-				Assert.assertEquals(currentUrl,homepageURL);
-				TestContext.getDriver().close();
-			}
+
+		try {
+			profile.click();
+			TestContext.getWait().until(ExpectedConditions.elementToBeClickable(logout)).click();
 			ExtentReportManager.reportStep(methodName, "pass");
 			TestContext.getLogger().info(methodName);
-			
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			TestContext.getLogger().error(methodName);
+
 			e.printStackTrace();
-			
 		}
 		return new PG_003_Logout(TestContext.getDriver());
 	}
