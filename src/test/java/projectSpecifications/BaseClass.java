@@ -61,10 +61,9 @@ public class BaseClass {
 	@Parameters({ "browser" })
 	public void setUp(String browser) {
 		WebDriver driver = initializeDriver(browser);
-		ExtentReportManager.reportStep("Opening the Browser", "pass");
 		driver.manage().window().maximize();
 		driver.get(properties.getProperty("url"));
-		ExtentReportManager.reportStep("Navigating to the URL"+properties.getProperty("url"), "pass");
+		
 		// Set WebDriver and other resources in TestContext
 		TestContext.setDriver(driver);
 		TestContext.setWait(TestContext.getDriver());

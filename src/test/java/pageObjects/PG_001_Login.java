@@ -52,6 +52,8 @@ public class PG_001_Login extends BaseClass {
 
 
 	public PG_001_Login Enter_User_Name(String userName) {
+		ExtentReportManager.reportStep("Opening the Browser", "pass");
+		ExtentReportManager.reportStep("Navigating to the URL"+properties.getProperty("url"), "pass");
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
 
 		try {
