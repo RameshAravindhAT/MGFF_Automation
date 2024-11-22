@@ -40,7 +40,7 @@ public class TestContext {
 
     public static void setWait(WebDriver driverInstance) {
         // Create a new WebDriverWait instance with a 15-second timeout
-        WebDriverWait waitInstance = new WebDriverWait(driverInstance, Duration.ofSeconds(20));
+        WebDriverWait waitInstance = new WebDriverWait(driverInstance, Duration.ofSeconds(30));
         wait.set(waitInstance);  // Correctly set the WebDriverWait instance in the ThreadLocal
     }
 

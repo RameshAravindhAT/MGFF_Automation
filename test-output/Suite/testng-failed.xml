@@ -4,16 +4,16 @@
   <test thread-count="5" name="LoginTest_Chrome(failed)">
     <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="testPackage.TC_002_Template">
+      <class name="testPackage.TC_003_Logout">
         <methods>
-          <include name="validate_login"/>
           <include name="setUp"/>
-          <include name="tearDown"/>
           <include name="testcasedetails"/>
+          <include name="tearDown"/>
+          <include name="validate_login"/>
           <include name="startReports"/>
           <include name="stopReports"/>
         </methods>
-      </class> <!-- testPackage.TC_002_Template -->
+      </class> <!-- testPackage.TC_003_Logout -->
     </classes>
   </test> <!-- LoginTest_Chrome(failed) -->
 </suite> <!-- Failed suite [Suite] -->

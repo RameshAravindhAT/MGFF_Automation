@@ -1,27 +1,24 @@
 package testPackage;
 
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import projectSpecifications.BaseClass;
 import utils.ExtentReportManager;
 import utils.TestContext;
 
-@Listeners(utils.CustomTestListener.class) // Custom listeners for reporting or test actions
-
-public class TC_001_Login2 extends BaseClass {
+public class TC_003_Logout extends BaseClass {
 
 	@BeforeClass
 	public void testcasedetails() {
 
-		TestContext.setSheetName("Logins");
+		TestContext.setSheetName("Logout");
 
 	}
 
 	@Test(dataProvider = "sendData")
 	public void validate_login(String testNameDetails, String authorName, String category, String userName,
-			String password, String scenario, String name, String role, String templateName, String desc)
+			String password, String scenario, String name, String role)
 			throws InterruptedException {
 		// Initialize the test in Extent Reports using TestContext
 		ExtentReportManager.setTest(extent.createTest(testNameDetails)); // Create the test instance in Extent Reports
@@ -29,8 +26,17 @@ public class TC_001_Login2 extends BaseClass {
 		ExtentReportManager.getTest().assignCategory(category); // Assign the category for the test
 
 		// Perform the login action using the login page object
-		TestContext.getLoginPage().Enter_User_Name(userName).Enter_Password(password).Click_Login_Button()
-				.Verifiy_toast_message(scenario, name, role);
+		TestContext.getLoginPage()
+		                   .Enter_User_Name(userName)
+		                   .Enter_Password(password)
+	                   	   .Click_Login_Button()
+		                   .Verifiy_toast_message(scenario, name, role)
+		                   .Verify_the_Home_Page_URL()
+		                   .Click_Profile()
+		                   .Click_Logout()
+		                   .Verify_the_Logout_URL();
+		
 
 	}
+
 }

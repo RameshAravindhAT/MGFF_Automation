@@ -61,9 +61,10 @@ public class BaseClass {
 	@Parameters({ "browser" })
 	public void setUp(String browser) {
 		WebDriver driver = initializeDriver(browser);
+		ExtentReportManager.reportStep("Opening the Browser", "pass");
 		driver.manage().window().maximize();
 		driver.get(properties.getProperty("url"));
-
+		ExtentReportManager.reportStep("Navigating to the URL"+properties.getProperty("url"), "pass");
 		// Set WebDriver and other resources in TestContext
 		TestContext.setDriver(driver);
 		TestContext.setWait(TestContext.getDriver());
@@ -98,7 +99,7 @@ public class BaseClass {
 	}
 
 	// Fetch test data from Excel for the given sheet
-	@DataProvider(name = "sendData", parallel = false, indices = 0)
+	@DataProvider(name = "sendData", parallel = false)
 	public String[][] fetchData() throws IOException {
 		if (TestContext.getSheetName() == null || TestContext.getSheetName().isEmpty()) {
 			throw new IllegalStateException("Sheet name is not set.");

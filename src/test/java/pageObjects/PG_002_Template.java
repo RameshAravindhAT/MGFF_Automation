@@ -1,10 +1,14 @@
 package pageObjects;
 
+import org.jspecify.annotations.Nullable;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
+import org.testng.internal.ExpectedExceptionsHolder;
 
 import projectSpecifications.BaseClass;
 import utils.ExtentReportManager;
@@ -119,29 +123,36 @@ public class PG_002_Template extends BaseClass {
 		}
 		return this;
 	}
-	public PG_002_Template Click_JsonEditor() {
+	public PG_002_Template Click_JsonEditor() throws InterruptedException {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
 
 		try {
-			TestContext.getJsExecutor().scrollToElement(jsoncontent);
-			Thread.sleep(8000);
+			TestContext.getJsExecutor().scrollDownByPixels(350);
+			Thread.sleep(3000);
 			System.out.println("Scrolling is happening");
-			jsoncontent.click();
+			TestContext.getWait().until(ExpectedConditions.visibilityOf(jsoncontent)).click();
 			ExtentReportManager.reportStep(methodName, "pass");
 			TestContext.getLogger().info(methodName);
-		} catch (Exception e) {
-			TestContext.getLogger().error(methodName);
-
+		} catch (ElementClickInterceptedException e) {
+	        TestContext.getJsExecutor().clickElementUsingJS(jsoncontent);
+		}
+			catch(Exception e)
+		
+		{
 			e.printStackTrace();
+			TestContext.getLogger().error(methodName);
 		}
 
 		return this;
 	}
+	
 	public PG_002_Template Paste_Jsoncontent() {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
 
 		try {
+			TestContext.getWait().until(ExpectedConditions.elementToBeClickable(jsontextarea));
 			jsontextarea.click();
+			Thread.sleep(3000);
 			jsontextarea.clear();
 			 Json_content jsoncontent = new Json_content(TestContext.getDriver());
             Object[] json = jsoncontent.scholarshipData();
@@ -152,6 +163,7 @@ public class PG_002_Template extends BaseClass {
                 dataToSend += obj.toString() + " "; // Concatenate each item (separated by a space or custom separator)
             }
             jsontextarea.sendKeys(dataToSend);
+Thread.sleep(5000);
 
 			ExtentReportManager.reportStep(methodName, "pass");
 			TestContext.getLogger().info(methodName);

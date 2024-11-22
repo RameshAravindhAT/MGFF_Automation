@@ -4,7 +4,7 @@
  <test name="LoginTest_Chrome">
     <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="testPackage.TC_002_Template"/>
+      <class name="testPackage.TC_003_Logout"/>
       
     </classes>
   </test>

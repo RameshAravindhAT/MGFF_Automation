@@ -40,7 +40,8 @@ public class TC_002_Template extends BaseClass {
 				.Add_Template()
 				.Enter_Template_Name(templateName)
 				.Enter_Description(desc)
-				.Click_JsonEditor();
+				.Click_JsonEditor()
+				.Paste_Jsoncontent();
 		
 	}
 }

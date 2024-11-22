@@ -1,5 +1,6 @@
 package pageObjects;
 
+import org.jspecify.annotations.Nullable;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,7 +23,7 @@ public class PG_001_Login extends BaseClass {
 
 	@FindBy(id = "id_email")
 	public WebElement username;
-	
+
 	@FindBy(id = "id_password")
 	public WebElement password;
 
@@ -37,11 +38,12 @@ public class PG_001_Login extends BaseClass {
 
 	@FindBy(xpath = "//i[@class='fas fa-user-circle']")
 	public WebElement Profile;
-	
+
 	@FindBy(xpath = "//span[@onclick=\"toggleSubmenu('adminSubmenu')\"]//span[@class='fas fa-chevron-down']")
 	public WebElement administration;
-
 	
+
+
 	public PG_001_Login Enter_User_Name(String userName) {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
 
@@ -132,6 +134,7 @@ public class PG_001_Login extends BaseClass {
 		}
 		return this;
 	}
+
 	public PG_002_Template Open_Administration() {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
 
@@ -147,5 +150,34 @@ public class PG_001_Login extends BaseClass {
 
 		return new PG_002_Template(TestContext.getDriver());
 	}
-
+	
+	
+	public PG_003_Logout Verify_the_Home_Page_URL(String scenario)
+	{
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
+		try
+		{
+			
+			String currentUrl = TestContext.getDriver().getCurrentUrl();
+			String homepageURL = "https://staging.msmp.navadhiti.com/mgff/dashboard/";
+			if(currentUrl.equalsIgnoreCase(homepageURL))
+			{
+				Assert.assertEquals(currentUrl,homepageURL);
+				TestContext.getDriver().close();
+			}
+			ExtentReportManager.reportStep(methodName, "pass");
+			TestContext.getLogger().info(methodName);
+			
+		}
+		catch(Exception e)
+		{
+			TestContext.getLogger().error(methodName);
+			e.printStackTrace();
+			
+		}
+		return new PG_003_Logout(TestContext.getDriver());
 	}
+	
+
+
+}

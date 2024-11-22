@@ -36,4 +36,20 @@ public class Scroll_Actions extends TestContext {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) TestContext.getDriver();
         jsExecutor.executeScript("window.scrollBy(arguments[0], arguments[1]);", x, y);
     }
+    
+    public void scrollDownByPixels(int pixels) {
+        // Cast WebDriver to JavascriptExecutor
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) TestContext.getDriver();
+
+        // Execute JavaScript to scroll the page vertically by the specified number of pixels
+        jsExecutor.executeScript("window.scrollBy(0, arguments[0]);", pixels);
+    }
+    
+    public void clickElementUsingJS(WebElement element) {
+        // Cast WebDriver to JavascriptExecutor
+    	 JavascriptExecutor jsExecutor = (JavascriptExecutor) TestContext.getDriver();
+
+        // Execute JavaScript to click the element
+        jsExecutor.executeScript("arguments[0].click();", element);
+    }
 }
