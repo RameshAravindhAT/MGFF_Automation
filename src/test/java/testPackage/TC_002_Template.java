@@ -38,10 +38,13 @@ public class TC_002_Template extends BaseClass {
 				.Open_Application()
 				.Open_Application_Template()
 				.Add_Template()
-				.Enter_Template_Name(templateName)
-				.Enter_Description(desc)
-				.Click_JsonEditor()
-				.Paste_Jsoncontent();
-		
+				.Enter_Template_and_Description(templateName, desc)
+				.Click_JsonEditor_and_Paste_the_JsconContent();
+				/*.Save_Template()
+				.Verifiy_toast_message(scenario, templateName, role)
+				.Verifiy_All_Template(scenario)
+				.Inactive_Tab()
+				.Edit_Template_and_Save()
+				.Double_click_Template();		*/	
 	}
 }
