@@ -1,12 +1,13 @@
 package pageObjects;
 
+import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -52,7 +53,7 @@ public class PG_002_Template extends BaseClass {
 	@FindBy(xpath ="//button[@title='Import']//*[name()='svg']")
 	public WebElement importjsonfile;
 	
-	@FindBy(xpath = "//div[@class='svc-tabbed-menu-item svc-tabbed-menu-item--selected']")
+	@FindBy(xpath = "//span[text()='Preview']")
 	public WebElement preview;
 
 	@FindBy(xpath = "//div[@class='col-md-12 d-flex justify-content-end']//button[@type='submit'][normalize-space()='Save']")
@@ -141,52 +142,111 @@ public class PG_002_Template extends BaseClass {
 		}
 		return this;
 	}
+	
+	public PG_002_Template Click_JsonEditor_and_Paste_the_JsonContent() throws InterruptedException {
+	    String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
+	    
+	    try {
+	        // Scroll down to make the element visible
+	        TestContext.getJsExecutor().scrollDownByPixels(350);
+	        TestContext.getWait().until(ExpectedConditions.visibilityOf(jsoncontent));
+	        jsoncontent.click();  // Click to focus on the json editor
+	        TestContext.getWait().until(ExpectedConditions.elementToBeClickable(jsontextarea));
+
+	        // Click the JSON textarea
+	        jsontextarea.click();
+	        jsontextarea.clear();  // Clear existing content
+	        Thread.sleep(3000);  // Consider replacing this with an explicit wait
+	        
+	        importjsonfile.click();
+	        
+	        Thread.sleep(3000); 
+	        
+	        Robot robot = new Robot();
+
+	        String filePath = "C:\\Users\\Hp\\Downloads\\surveyOne.json"; 
+	        StringSelection stringSelection = new StringSelection(filePath);
+	        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+
+	        robot.keyPress(KeyEvent.VK_CONTROL);
+	        robot.keyPress(KeyEvent.VK_V);
+	      
+	        robot.keyRelease(KeyEvent.VK_V);
+	        robot.keyRelease(KeyEvent.VK_CONTROL);
+
+	        // Step 6: Simulate pressing Enter to select the file
+	        robot.keyPress(KeyEvent.VK_ENTER);
+	        robot.keyRelease(KeyEvent.VK_ENTER);
+
+	        
+	        Thread.sleep(5000);
+	        preview.click();
+	        // Save the result (if applicable)
+	        // save.click();  // Uncomment this if needed
+
+	        // Report step as pass
+	        ExtentReportManager.reportStep(methodName, "pass");
+	        TestContext.getLogger().info(methodName);
+
+	    } catch (ElementClickInterceptedException e) {
+	        // Handle case where element cannot be clicked
+	        TestContext.getJsExecutor().clickElementUsingJS(jsoncontent);
+	    } catch (Exception e) {
+	        // Handle other exceptions
+	        e.printStackTrace();
+	        TestContext.getLogger().error(methodName);
+	    }
+
+	    return this;
+	}
 
 	
 
-	public PG_002_Template Click_JsonEditor_and_Paste_the_JsconContent() throws InterruptedException {
-		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
-
-		try {
-			TestContext.getJsExecutor().scrollDownByPixels(350);
-			Thread.sleep(3000);
-			System.out.println("Scrolling is happening");
-			TestContext.getWait().until(ExpectedConditions.visibilityOf(jsoncontent)).click();
-			TestContext.getWait().until(ExpectedConditions.elementToBeClickable(jsontextarea));
-			jsontextarea.click();
-			Thread.sleep(3000);
-			jsontextarea.clear();
-			Thread.sleep(3000);
-			importjsonfile.click();
-			Thread.sleep(5000);
-			String jsonpath ="/home/sumo/Downloads/survey.json";
-			StringSelection stringSelection = new StringSelection(jsonpath);
-			Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-			clipboard.setContents(stringSelection, null);
-			Actions actions = new Actions(TestContext.getDriver());
-			actions.
-			       sendKeys(Keys.CONTROL+"v")
-			       .sendKeys(Keys.ENTER)
-			       .build()
-			       .perform();
-			
-			Thread.sleep(5000);
-			preview.click();
-			Thread.sleep(3000);
-			//save.click();
-			ExtentReportManager.reportStep(methodName, "pass");
-			TestContext.getLogger().info(methodName);
-		} catch (ElementClickInterceptedException e) {
-			TestContext.getJsExecutor().clickElementUsingJS(jsoncontent);
-		} catch (Exception e)
-
-		{
-			e.printStackTrace();
-			TestContext.getLogger().error(methodName);
-		}
-
-		return this;
-	}
+//	public PG_002_Template Click_JsonEditor_and_Paste_the_JsconContent() throws InterruptedException {
+//		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
+//
+//		try {
+//			TestContext.getJsExecutor().scrollDownByPixels(350);
+//			Thread.sleep(3000);
+//			System.out.println("Scrolling is happening");
+//			TestContext.getWait().until(ExpectedConditions.visibilityOf(jsoncontent)).click();
+//			TestContext.getWait().until(ExpectedConditions.elementToBeClickable(jsontextarea));
+//			jsontextarea.click();
+//			Thread.sleep(3000);
+//			jsontextarea.clear();
+//			Thread.sleep(3000);
+//			importjsonfile.click();
+//			Thread.sleep(5000);
+//			TestContext.getDriver().findElement(By.xpath("//button[@title='Import']//*[name()='svg']")).sendKeys("/home/nd/Downloads/empty-03-1.jpg");
+//			String jsonpath ="C:\\Users\\Hp\\Downloads\\survey (1).json";
+//			importjsonfile.sendKeys(jsonpath);
+//			Actions actions = new Actions(TestContext.getDriver());
+//			actions
+//			       .sendKeys(Keys.ENTER)
+//			       .build()
+//			       .perform();
+//			StringSelection stringSelection = new StringSelection(jsonpath);
+//			Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+//			clipboard.setContents(stringSelection, null);
+//		
+//			
+//			Thread.sleep(5000);
+//			preview.click();
+//			Thread.sleep(3000);
+//			//save.click();
+//			ExtentReportManager.reportStep(methodName, "pass");
+//			TestContext.getLogger().info(methodName);
+//		} catch (ElementClickInterceptedException e) {
+//			TestContext.getJsExecutor().clickElementUsingJS(jsoncontent);
+//		} catch (Exception e)
+//
+//		{
+//			e.printStackTrace();
+//			TestContext.getLogger().error(methodName);
+//		}
+//
+//		return this;
+//	}
 
 	
 
