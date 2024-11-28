@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="0" skipped="1">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-11-22T13:47:06 IST" name="Suite" finished-at="2024-11-22T13:47:14 IST" duration-ms="8240">
+  <suite started-at="2024-11-28T23:34:59 IST" name="Suite" finished-at="2024-11-28T23:36:58 IST" duration-ms="118212">
     <groups>
     </groups>
-    <test started-at="2024-11-22T13:47:06 IST" name="LoginTest_Chrome" finished-at="2024-11-22T13:47:14 IST" duration-ms="8240">
-      <class name="testPackage.TC_003_Logout">
-        <test-method is-config="true" signature="startReports()[pri:0, instance:testPackage.TC_003_Logout@4d1c005e]" started-at="2024-11-22T13:47:06 IST" name="startReports" finished-at="2024-11-22T13:47:06 IST" duration-ms="563" status="PASS">
+    <test started-at="2024-11-28T23:34:59 IST" name="LoginTest_Chrome" finished-at="2024-11-28T23:36:58 IST" duration-ms="118212">
+      <class name="testPackage.TC_004_CreateNewBatch">
+        <test-method is-config="true" signature="startReports()[pri:0, instance:testPackage.TC_004_CreateNewBatch@3349e9bb]" started-at="2024-11-28T23:34:59 IST" name="startReports" finished-at="2024-11-28T23:34:59 IST" duration-ms="340" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startReports -->
-        <test-method is-config="true" signature="testcasedetails()[pri:0, instance:testPackage.TC_003_Logout@4d1c005e]" started-at="2024-11-22T13:47:06 IST" name="testcasedetails" finished-at="2024-11-22T13:47:06 IST" duration-ms="2" status="PASS">
+        <test-method is-config="true" signature="testcasedetails()[pri:0, instance:testPackage.TC_004_CreateNewBatch@3349e9bb]" started-at="2024-11-28T23:34:59 IST" name="testcasedetails" finished-at="2024-11-28T23:34:59 IST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testcasedetails -->
-        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:testPackage.TC_003_Logout@4d1c005e]" started-at="2024-11-22T13:47:08 IST" name="setUp" finished-at="2024-11-22T13:47:14 IST" duration-ms="6763" status="FAIL">
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:testPackage.TC_004_CreateNewBatch@3349e9bb]" started-at="2024-11-28T23:35:00 IST" name="setUp" finished-at="2024-11-28T23:35:06 IST" duration-ms="5491" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -23,55 +23,14 @@
               </value>
             </param>
           </params>
-          <exception class="java.lang.NullPointerException">
-            <message>
-              <![CDATA[Cannot invoke "com.aventstack.extentreports.ExtentTest.pass(String)" because the return value of "java.lang.ThreadLocal.get()" is null]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException: Cannot invoke "com.aventstack.extentreports.ExtentTest.pass(String)" because the return value of "java.lang.ThreadLocal.get()" is null
-at utils.ExtentReportManager.reportStep(ExtentReportManager.java:46)
-at projectSpecifications.BaseClass.setUp(BaseClass.java:64)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-at org.testng.internal.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:62)
-at org.testng.internal.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:385)
-at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:321)
-at org.testng.internal.TestInvoker.runConfigMethods(TestInvoker.java:700)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:527)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:794)
-at org.testng.TestRunner.run(TestRunner.java:596)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
-at org.testng.SuiteRunner.run(SuiteRunner.java:276)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
-at org.testng.TestNG.runSuites(TestNG.java:1063)
-at org.testng.TestNG.run(TestNG.java:1031)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="validate_login(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:testPackage.TC_003_Logout@4d1c005e]" started-at="2024-11-22T13:47:14 IST" name="validate_login" data-provider="sendData" finished-at="2024-11-22T13:47:14 IST" duration-ms="0" status="SKIP">
+        <test-method signature="validate_login(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:testPackage.TC_004_CreateNewBatch@3349e9bb]" started-at="2024-11-28T23:35:06 IST" name="validate_login" data-provider="sendData" finished-at="2024-11-28T23:36:57 IST" duration-ms="111512" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[Validate with logout]]>
+                <![CDATA[validate login feature with valid credentials]]>
               </value>
             </param>
             <param index="1">
@@ -109,60 +68,39 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
                 <![CDATA[Admin]]>
               </value>
             </param>
+            <param index="8">
+              <value>
+                <![CDATA[Selenium Test Batch]]>
+              </value>
+            </param>
+            <param index="9">
+              <value>
+                <![CDATA[This is selenium Test batch]]>
+              </value>
+            </param>
+            <param index="10">
+              <value>
+                <![CDATA[“28/11/2024”]]>
+              </value>
+            </param>
+            <param index="11">
+              <value>
+                <![CDATA[“28/12/2024”]]>
+              </value>
+            </param>
           </params>
-          <exception class="java.lang.NullPointerException">
-            <message>
-              <![CDATA[Cannot invoke "com.aventstack.extentreports.ExtentTest.pass(String)" because the return value of "java.lang.ThreadLocal.get()" is null]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException: Cannot invoke "com.aventstack.extentreports.ExtentTest.pass(String)" because the return value of "java.lang.ThreadLocal.get()" is null
-at utils.ExtentReportManager.reportStep(ExtentReportManager.java:46)
-at projectSpecifications.BaseClass.setUp(BaseClass.java:64)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-at org.testng.internal.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:62)
-at org.testng.internal.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:385)
-at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:321)
-at org.testng.internal.TestInvoker.runConfigMethods(TestInvoker.java:700)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:527)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:794)
-at org.testng.TestRunner.run(TestRunner.java:596)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
-at org.testng.SuiteRunner.run(SuiteRunner.java:276)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
-at org.testng.TestNG.runSuites(TestNG.java:1063)
-at org.testng.TestNG.run(TestNG.java:1031)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- validate_login -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:testPackage.TC_003_Logout@4d1c005e]" started-at="2024-11-22T13:47:14 IST" name="tearDown" finished-at="1970-01-01T05:30:00 IST" duration-ms="-1732263434860" status="SKIP">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:testPackage.TC_004_CreateNewBatch@3349e9bb]" started-at="2024-11-28T23:36:57 IST" name="tearDown" finished-at="2024-11-28T23:36:58 IST" duration-ms="129" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="stopReports()[pri:0, instance:testPackage.TC_003_Logout@4d1c005e]" started-at="2024-11-22T13:47:14 IST" name="stopReports" finished-at="2024-11-22T13:47:15 IST" duration-ms="661" status="PASS">
+        <test-method is-config="true" signature="stopReports()[pri:0, instance:testPackage.TC_004_CreateNewBatch@3349e9bb]" started-at="2024-11-28T23:36:58 IST" name="stopReports" finished-at="2024-11-28T23:36:58 IST" duration-ms="514" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- stopReports -->
-      </class> <!-- testPackage.TC_003_Logout -->
+      </class> <!-- testPackage.TC_004_CreateNewBatch -->
     </test> <!-- LoginTest_Chrome -->
   </suite> <!-- Suite -->
 </testng-results>

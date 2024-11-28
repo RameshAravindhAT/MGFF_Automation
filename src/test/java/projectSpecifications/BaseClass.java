@@ -98,7 +98,7 @@ public class BaseClass {
 	}
 
 	// Fetch test data from Excel for the given sheet
-	@DataProvider(name = "sendData", parallel = false)
+	@DataProvider(name = "sendData", parallel = false, indices = 0)
 	public String[][] fetchData() throws IOException {
 		if (TestContext.getSheetName() == null || TestContext.getSheetName().isEmpty()) {
 			throw new IllegalStateException("Sheet name is not set.");

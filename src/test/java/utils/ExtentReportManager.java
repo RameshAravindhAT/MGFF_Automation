@@ -14,6 +14,7 @@ public class ExtentReportManager {
     private static ExtentReports extentReports;
     private static String reportFilePath = Paths.get("ExtentReports", "extentReports.html").toAbsolutePath().toString();
     private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+  
 
     // Initialize the Extent Reports - should be called once before the suite
     public static ExtentReports startReports() {
@@ -65,6 +66,15 @@ public class ExtentReportManager {
     // Get the ExtentTest instance for the current thread
     public static ExtentTest getTest() {
         return test.get();
+    }
+    
+    public static ExtentTest getNode(String nodeDetails) {
+        return test.get().createNode(nodeDetails);
+    }
+    
+    // Set the ExtentTest node (child node) for the current thread
+    public static ExtentTest setNode(String nodeDetails) {
+        return test.get().createNode(nodeDetails);
     }
 
     // Stop and flush the reports - should be called once after the suite

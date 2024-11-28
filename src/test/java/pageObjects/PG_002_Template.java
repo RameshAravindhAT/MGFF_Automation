@@ -2,15 +2,14 @@ package pageObjects;
 
 import java.awt.Robot;
 import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -49,10 +48,10 @@ public class PG_002_Template extends BaseClass {
 
 	@FindBy(xpath = "//textarea[@aria-label='JSON Editor']")
 	public WebElement jsontextarea;
-	
-	@FindBy(xpath ="//button[@title='Import']//*[name()='svg']")
+
+	@FindBy(xpath = "//button[@title='Import']//*[name()='svg']")
 	public WebElement importjsonfile;
-	
+
 	@FindBy(xpath = "//span[text()='Preview']")
 	public WebElement preview;
 
@@ -67,15 +66,16 @@ public class PG_002_Template extends BaseClass {
 
 	@FindBy(xpath = "//input[@id='id_is_active']")
 	public WebElement isactive;
-	
+
 	@FindBy(xpath = "//tbody/tr[3]/td[1]/a[1]")
 	public WebElement doubleclickontemplate;
 	
+	@FindBy(xpath = "//span[normalize-space()='Application Batches']")
+	public WebElement applicationbatch;
 	
 
 
-
-	public PG_002_Template Open_Application() {
+	public PG_002_Template Click_on_Applications() {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
 
 		try {
@@ -91,11 +91,43 @@ public class PG_002_Template extends BaseClass {
 		return this;
 	}
 
-	public PG_002_Template Open_Application_Template() {
+	public PG_002_Template Click_on_Application_Templates(String operation,String templeName) {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
 
 		try {
+			
 			applicationtemplate.click();
+			Thread.sleep(5000);
+			if(operation.equalsIgnoreCase("delete")) {
+				
+				
+			List<WebElement> templateHeaders = TestContext.getDriver().findElements(By.xpath("(//table[@id='templateTable']//tr)[1]//following::tr/td[1]/a"));
+		
+			for (int i=0;i<=templateHeaders.size();i++)
+			{
+				if(templateHeaders.get(i).getText().equalsIgnoreCase(templeName))
+				{
+					WebElement recordOne=TestContext.getDriver().findElement(By.xpath("//table[@id='templateTable']//tbody/tr[1]/td[1]//a[text()='"+templeName+"']"));
+					recordOne.findElement(By.xpath("//following::button[contains(@class,'deleteBtn')]")).click();
+					String expectedToast = "This template is enrolled in a batch and can't be edited.";
+					String warningToast = TestContext.getWait().until(
+							ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='toast-container']//p")))
+							.getText();
+					Assert.assertEquals(warningToast,"This template is enrolled in a batch and can't be edited.");
+					ExtentReportManager.reportStep(methodName+"Deleting the template"+ "Expected Toast is "+ warningToast, "pass");
+					ExtentReportManager.getNode("Click on Delete icon")
+					.info("Verify the toast message"+ " "+ expectedToast);
+					TestContext.getDriver().close();
+					
+				}
+			}
+				
+			}
+			else if(operation.equals("Create"))
+			{
+				addtemplate.click();
+			}
+			
 			ExtentReportManager.reportStep(methodName, "pass");
 			TestContext.getLogger().info(methodName);
 		} catch (Exception e) {
@@ -107,7 +139,7 @@ public class PG_002_Template extends BaseClass {
 		return this;
 	}
 
-	public PG_002_Template Add_Template() {
+	public PG_002_Template Click_on_Add_Template_Button() {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
 
 		try {
@@ -125,7 +157,7 @@ public class PG_002_Template extends BaseClass {
 		return this;
 	}
 
-	public PG_002_Template Enter_Template_and_Description(String templateName,String desc) {
+	public PG_002_Template Enter_Template_Name_and_Description(String templateName, String desc) {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
 
 		try {
@@ -142,113 +174,107 @@ public class PG_002_Template extends BaseClass {
 		}
 		return this;
 	}
-	
-	public PG_002_Template Click_JsonEditor_and_Paste_the_JsonContent() throws InterruptedException {
-	    String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
-	    
-	    try {
-	        // Scroll down to make the element visible
-	        TestContext.getJsExecutor().scrollDownByPixels(350);
-	        TestContext.getWait().until(ExpectedConditions.visibilityOf(jsoncontent));
-	        jsoncontent.click();  // Click to focus on the json editor
-	        TestContext.getWait().until(ExpectedConditions.elementToBeClickable(jsontextarea));
 
-	        // Click the JSON textarea
-	        jsontextarea.click();
-	        jsontextarea.clear();  // Clear existing content
-	        Thread.sleep(3000);  // Consider replacing this with an explicit wait
-	        
-	        importjsonfile.click();
-	        
-	        Thread.sleep(3000); 
-	        
-	        Robot robot = new Robot();
+	public PG_002_Template Click_JsonEditor_and_Upload_the_JsonFile() throws InterruptedException {
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
 
-	        String filePath = "C:\\Users\\Hp\\Downloads\\surveyOne.json"; 
-	        StringSelection stringSelection = new StringSelection(filePath);
-	        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+		try {
+			// Scroll down to make the element visible
+			TestContext.getJsExecutor().scrollDownByPixels(350);
+			TestContext.getWait().until(ExpectedConditions.visibilityOf(jsoncontent));
+			jsoncontent.click(); // Click to focus on the json editor
+			TestContext.getWait().until(ExpectedConditions.elementToBeClickable(jsontextarea));
 
-	        robot.keyPress(KeyEvent.VK_CONTROL);
-	        robot.keyPress(KeyEvent.VK_V);
-	      
-	        robot.keyRelease(KeyEvent.VK_V);
-	        robot.keyRelease(KeyEvent.VK_CONTROL);
+			// Click the JSON textarea
+			jsontextarea.click();
+			jsontextarea.clear(); // Clear existing content
+			Thread.sleep(3000); // Consider replacing this with an explicit wait
 
-	        // Step 6: Simulate pressing Enter to select the file
-	        robot.keyPress(KeyEvent.VK_ENTER);
-	        robot.keyRelease(KeyEvent.VK_ENTER);
+			importjsonfile.click();
 
-	        
-	        Thread.sleep(5000);
-	        preview.click();
-	        // Save the result (if applicable)
-	        // save.click();  // Uncomment this if needed
+			Thread.sleep(3000);
 
-	        // Report step as pass
-	        ExtentReportManager.reportStep(methodName, "pass");
-	        TestContext.getLogger().info(methodName);
+			Robot robot = new Robot();
 
-	    } catch (ElementClickInterceptedException e) {
-	        // Handle case where element cannot be clicked
-	        TestContext.getJsExecutor().clickElementUsingJS(jsoncontent);
-	    } catch (Exception e) {
-	        // Handle other exceptions
-	        e.printStackTrace();
-	        TestContext.getLogger().error(methodName);
-	    }
+			String filePath = "/home/sumo/Downloads/survey.json";
+			StringSelection stringSelection = new StringSelection(filePath);
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
 
-	    return this;
+			robot.keyPress(KeyEvent.VK_CONTROL);
+			robot.keyPress(KeyEvent.VK_V);
+
+			robot.keyRelease(KeyEvent.VK_V);
+			robot.keyRelease(KeyEvent.VK_CONTROL);
+
+			// Step 6: Simulate pressing Enter to select the file
+			robot.keyPress(KeyEvent.VK_ENTER);
+			robot.keyRelease(KeyEvent.VK_ENTER);
+
+			Thread.sleep(5000);
+			preview.click();
+			Thread.sleep(3000);
+
+			// Save the result (if applicable)
+			// save.click(); // Uncomment this if needed
+
+			// Report step as pass
+			ExtentReportManager.reportStep(methodName, "pass");
+			TestContext.getLogger().info(methodName);
+
+		} catch (ElementClickInterceptedException e) {
+			// Handle case where element cannot be clicked
+			TestContext.getJsExecutor().clickElementUsingJS(jsoncontent);
+		} catch (Exception e) {
+			// Handle other exceptions
+			e.printStackTrace();
+			TestContext.getLogger().error(methodName);
+		}
+
+		return this;
 	}
 
-	
+	/* public PG_002_Template Click_JsonEditor_and_Paste_the_JsconContent() throws InterruptedException {
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
 
-//	public PG_002_Template Click_JsonEditor_and_Paste_the_JsconContent() throws InterruptedException {
-//		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
-//
-//		try {
-//			TestContext.getJsExecutor().scrollDownByPixels(350);
-//			Thread.sleep(3000);
-//			System.out.println("Scrolling is happening");
-//			TestContext.getWait().until(ExpectedConditions.visibilityOf(jsoncontent)).click();
-//			TestContext.getWait().until(ExpectedConditions.elementToBeClickable(jsontextarea));
-//			jsontextarea.click();
-//			Thread.sleep(3000);
-//			jsontextarea.clear();
-//			Thread.sleep(3000);
-//			importjsonfile.click();
-//			Thread.sleep(5000);
-//			TestContext.getDriver().findElement(By.xpath("//button[@title='Import']//*[name()='svg']")).sendKeys("/home/nd/Downloads/empty-03-1.jpg");
-//			String jsonpath ="C:\\Users\\Hp\\Downloads\\survey (1).json";
-//			importjsonfile.sendKeys(jsonpath);
-//			Actions actions = new Actions(TestContext.getDriver());
-//			actions
-//			       .sendKeys(Keys.ENTER)
-//			       .build()
-//			       .perform();
-//			StringSelection stringSelection = new StringSelection(jsonpath);
-//			Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-//			clipboard.setContents(stringSelection, null);
-//		
-//			
-//			Thread.sleep(5000);
-//			preview.click();
-//			Thread.sleep(3000);
-//			//save.click();
-//			ExtentReportManager.reportStep(methodName, "pass");
-//			TestContext.getLogger().info(methodName);
-//		} catch (ElementClickInterceptedException e) {
-//			TestContext.getJsExecutor().clickElementUsingJS(jsoncontent);
-//		} catch (Exception e)
-//
-//		{
-//			e.printStackTrace();
-//			TestContext.getLogger().error(methodName);
-//		}
-//
-//		return this;
-//	}
+		try {
+			TestContext.getJsExecutor().scrollDownByPixels(350);
+			Thread.sleep(3000);
+			System.out.println("Scrolling is happening");
+			TestContext.getWait().until(ExpectedConditions.visibilityOf(jsoncontent)).click();
+			TestContext.getWait().until(ExpectedConditions.elementToBeClickable(jsontextarea));
+			jsontextarea.click();
+			Thread.sleep(3000);
+			jsontextarea.clear();
+			Thread.sleep(3000);
+			importjsonfile.click();
+			Thread.sleep(5000);
+			TestContext.getDriver().findElement(By.xpath("//button[@title='Import']//*[name()='svg']"))
+					.sendKeys("/home/nd/Downloads/empty-03-1.jpg");
+			String jsonpath = "/home/sumo/Downloads/survey.json";
+			importjsonfile.sendKeys(jsonpath);
+			Actions actions = new Actions(TestContext.getDriver());
+			actions.sendKeys(Keys.ENTER).build().perform();
+			StringSelection stringSelection = new StringSelection(jsonpath);
+			Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+			clipboard.setContents(stringSelection, null);
 
-	
+			Thread.sleep(5000);
+			preview.click();
+			Thread.sleep(3000);
+			// save.click();
+			ExtentReportManager.reportStep(methodName, "pass");
+			TestContext.getLogger().info(methodName);
+		} catch (ElementClickInterceptedException e) {
+			TestContext.getJsExecutor().clickElementUsingJS(jsoncontent);
+		} catch (Exception e)
+
+		{
+			e.printStackTrace();
+			TestContext.getLogger().error(methodName);
+		}
+
+		return this;
+	} */
 
 	public PG_002_Template Save_Template() {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
@@ -274,9 +300,8 @@ public class PG_002_Template extends BaseClass {
 
 		try {
 			if (scenario.equalsIgnoreCase("positive")) {
-				String text = TestContext.getWait()
-						.until(ExpectedConditions
-								.visibilityOfElementLocated(By.xpath("//div[@class='toast-container']//p")))
+				String text = TestContext.getWait().until(
+						ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='toast-container']//p")))
 						.getText();
 				System.out.println(text);
 				Assert.assertEquals(text, "Template added successfully");
@@ -332,6 +357,7 @@ public class PG_002_Template extends BaseClass {
 		try {
 			Thread.sleep(2000);
 			inactive.click();
+	         Thread.sleep(3000);
 			ExtentReportManager.reportStep(methodName, "pass");
 			TestContext.getLogger().info(methodName);
 
@@ -348,14 +374,11 @@ public class PG_002_Template extends BaseClass {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
 
 		try {
-			Thread.sleep(2000);
-			edit.click();
-			Thread.sleep(2000);
-			isactive.click();
-			save.click();
-			String text = TestContext.getWait()
-					.until(ExpectedConditions
-							.visibilityOfElementLocated(By.xpath("//div[@class='toast-container']//p")))
+           TestContext.getWait().until(ExpectedConditions.elementToBeClickable(edit)).click();
+	           TestContext.getWait().until(ExpectedConditions.elementToBeClickable(isactive)).click();
+	           TestContext.getWait().until(ExpectedConditions.elementToBeClickable(save)).click();
+     			String text = TestContext.getWait().until(
+					ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='toast-container']//p")))
 					.getText();
 			System.out.println(text);
 			Assert.assertEquals(text, "Template updated successfully");
@@ -370,17 +393,15 @@ public class PG_002_Template extends BaseClass {
 
 		return this;
 	}
-	public PG_002_Template Double_click_Template() {
+
+	public PG_002_Template Double_click_on_Template() {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
-        WebDriver driver = new ChromeDriver();
-        Actions actions = new Actions(driver);
 		try {
-			Thread.sleep(2000);
-            actions.doubleClick(doubleclickontemplate).perform();
-            String text = TestContext.getWait()
-					.until(ExpectedConditions
-							.visibilityOfElementLocated(By.xpath("//h2[@class='h4']")))
-					.getText();
+			TestContext.getWait().until(ExpectedConditions.elementToBeClickable(doubleclickontemplate));
+			Actions actions = new Actions(TestContext.getDriver());
+			actions.doubleClick(doubleclickontemplate).perform();
+			String text = TestContext.getWait()
+					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@class='h4']"))).getText();
 			Thread.sleep(3000);
 			System.out.println(text);
 			Assert.assertEquals(text, "Template Detail");
@@ -396,5 +417,21 @@ public class PG_002_Template extends BaseClass {
 		return this;
 	}
 	
+	public PG_004_CreateNewBatch Click_on_application_Batch() {
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
 
-}
+		try {
+
+			applicationbatch.click();
+			Thread.sleep(3000);
+			ExtentReportManager.reportStep(methodName, "pass");
+			TestContext.getLogger().info(methodName);
+		} catch (Exception e) {
+			TestContext.getLogger().error(methodName);
+
+			e.printStackTrace();
+		}
+		return new PG_004_CreateNewBatch(TestContext.getDriver());
+	}
+	}
+		

@@ -3,7 +3,7 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testPackage.TC_003_Logout">
+      <class name="testPackage.TC_004_CreateNewBatch">
         <methods>
           <include name="setUp"/>
           <include name="testcasedetails"/>
@@ -12,7 +12,7 @@
           <include name="startReports"/>
           <include name="stopReports"/>
         </methods>
-      </class> <!-- testPackage.TC_003_Logout -->
+      </class> <!-- testPackage.TC_004_CreateNewBatch -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

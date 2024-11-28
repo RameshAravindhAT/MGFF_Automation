@@ -1,6 +1,5 @@
 package pageObjects;
 
-import org.jspecify.annotations.Nullable;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,9 +12,8 @@ import projectSpecifications.BaseClass;
 import utils.ExtentReportManager;
 import utils.TestContext;
 
-public class PG_001_Login extends BaseClass {
-
-	public PG_001_Login(WebDriver driver) {
+public class PG_test extends BaseClass{
+	public PG_test(WebDriver driver) {
 		// Initialize the driver and page elements
 		TestContext.setDriver(driver);
 		PageFactory.initElements(driver, this);
@@ -26,32 +24,11 @@ public class PG_001_Login extends BaseClass {
 
 	@FindBy(id = "id_password")
 	public WebElement password;
-
+	
 	@FindBy(xpath = "//button[@name='login']")
 	public WebElement loginbutton;
-
-	@FindBy(xpath = "//div[@class= 'toast-container']//div/p")
-	public WebElement toastmessage;
-
-	@FindBy(xpath = "//div[@class='h5 font-weight-normal mb-2']")
-	public WebElement homepage;
-
-	@FindBy(xpath = "//i[@class='fas fa-user-circle']")
-	public WebElement Profile;
-
-	@FindBy(xpath = "//span[@onclick=\"toggleSubmenu('adminSubmenu')\"]//span[@class='fas fa-chevron-down']")
-	public WebElement administration;
 	
-
-	@FindBy(xpath = "//i[@class='fas fa-user-circle']")
-	public WebElement profile;	
-	
-	@FindBy(xpath = "//a[@class='dropdown-item font-weight-bold']")
-	public WebElement logout;
-	
-
-
-	public PG_001_Login Enter_User_Name(String userName) {
+	public PG_test Enter_User_Name1(String userName) {
 		ExtentReportManager.reportStep("Opening the Browser", "pass");
 		ExtentReportManager.reportStep("Navigating to the URL"+properties.getProperty("url"), "pass");
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
@@ -66,8 +43,8 @@ public class PG_001_Login extends BaseClass {
 		}
 		return this;
 	}
-
-	public PG_001_Login Enter_Password(String passwordvales) {
+	
+	public PG_test Enter_Password1(String passwordvales) {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
 
 		try {
@@ -81,8 +58,7 @@ public class PG_001_Login extends BaseClass {
 		}
 		return this;
 	}
-
-	public PG_001_Login Click_Login_Button() {
+	public PG_test Click_Login_Button1() {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
 
 		try {
@@ -96,8 +72,7 @@ public class PG_001_Login extends BaseClass {
 		}
 		return this;
 	}
-
-	public PG_001_Login Verifiy_toast_message(String scenario, String name, String role) throws InterruptedException {
+	public PG_test Verifiy_toast_message1(String scenario, String name, String role) throws InterruptedException {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
 
 		try {
@@ -110,16 +85,15 @@ public class PG_001_Login extends BaseClass {
 				Thread.sleep(3000);
 				System.out.println(text);
 				Assert.assertEquals(text, "Hi " + name + " ! Welcome To MGFF " + role + " Dashboard");
-
+				/*
+				 * } else if (scenario.equalsIgnoreCase("negative")) { String text =
+				 * TestContext.getWait() .until(ExpectedConditions
+				 * .visibilityOfElementLocated(By.
+				 * xpath("//div[@class= 'toast-container']//div/p"))) .getText();
+				 * System.out.println(text); Assert.assertEquals(text,
+				 * "Invalid email or password.");
+				 */
 			} else if (scenario.equalsIgnoreCase("negative")) {
-				String text = TestContext.getWait()
-						.until(ExpectedConditions
-								.visibilityOfElementLocated(By.xpath("//div[@class= 'toast-container']//div/p")))
-						.getText();
-				System.out.println(text);
-				Assert.assertEquals(text, "Invalid email or password.");
-
-			} else if (scenario.equalsIgnoreCase("emailEmpty")) {
 				WebElement toastMessage = TestContext.getWait().until(ExpectedConditions
 						.visibilityOfElementLocated(By.xpath("//*[contains(text(), 'Please fill in this field.')]")));
 
@@ -143,40 +117,5 @@ public class PG_001_Login extends BaseClass {
 		}
 		return this;
 	}
-
-	public PG_002_Template Click_on_Administration() {
-		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
-
-		try {
-			administration.click();
-			ExtentReportManager.reportStep(methodName, "pass");
-			TestContext.getLogger().info(methodName);
-		} catch (Exception e) {
-			TestContext.getLogger().error(methodName);
-
-			e.printStackTrace();
-		}
-
-		return new PG_002_Template(TestContext.getDriver());
-	}
-	
-	
-	public PG_003_Logout Click_Logout() {
-		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
-
-		try {
-			profile.click();
-			TestContext.getWait().until(ExpectedConditions.elementToBeClickable(logout)).click();
-			ExtentReportManager.reportStep(methodName, "pass");
-			TestContext.getLogger().info(methodName);
-		} catch (Exception e) {
-			TestContext.getLogger().error(methodName);
-
-			e.printStackTrace();
-		}
-		return new PG_003_Logout(TestContext.getDriver());
-	}
-	
-
 
 }

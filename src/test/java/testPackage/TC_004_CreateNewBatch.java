@@ -1,28 +1,25 @@
 package testPackage;
 
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import projectSpecifications.BaseClass;
 import utils.ExtentReportManager;
 import utils.TestContext;
 
-@Listeners(utils.CustomTestListener.class) // Custom listeners for reporting or test actions
-
-public class TC_002_Template extends BaseClass {
+public class TC_004_CreateNewBatch extends BaseClass {
 
 	@BeforeClass
 	public void testcasedetails() {
 
-		TestContext.setSheetName("Template");
+		TestContext.setSheetName("Batch");
 
 	}
 
 	@Test(dataProvider = "sendData")	
 
 	public void validate_login(String testNameDetails, String authorName, String category, String userName,
-			String password, String scenario, String name, String role,String operation,String templeNaming,String templateName, String desc) throws InterruptedException {
+			String password, String scenario, String name, String role,String batchName, String desc,String startDate, String endDate) throws InterruptedException {
 		// Initialize the test in Extent Reports using TestContext
 		ExtentReportManager.setTest(extent.createTest(testNameDetails)); // Create the test instance in Extent Reports
 		ExtentReportManager.getTest().assignAuthor(authorName); // Assign the author for the test
@@ -33,18 +30,14 @@ public class TC_002_Template extends BaseClass {
 		         .Enter_User_Name(userName)
 		         .Enter_Password(password)
 	           	 .Click_Login_Button()
-				 .Verifiy_toast_message(scenario, name, role)
-				 .Open_Administration()
-				 .Click_on_Applications()
-				 .Click_on_Application_Templates(operation,templeNaming)
-				 .Click_on_Add_Template_Button()
-				 .Enter_Template_Name_and_Description(templateName, desc)
-				 .Click_JsonEditor_and_Upload_the_JsonFile()
-				.Save_Template()
-				.Verifiy_toast_message(scenario, templateName, role)
-				.Verifiy_All_Template(scenario)
-				.Inactive_Tab()
-				.Edit_Template_and_Save()
-				.Double_click_on_Template();			
+				.Verifiy_toast_message(scenario, name, role)
+				.Click_on_Administration()
+				.Click_on_Applications()
+				.Click_on_application_Batch()
+				.Click_on_Add_new_Batch()
+				.Select_Start_and_End_Date(startDate, endDate)
+				.Enter_Batch_Name_and_Description(batchName, desc)
+				.Save_Batch()
+				.Verifiy_toast_message(scenario, batchName, role);
 	}
 }
