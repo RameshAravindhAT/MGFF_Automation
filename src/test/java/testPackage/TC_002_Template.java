@@ -34,7 +34,7 @@ public class TC_002_Template extends BaseClass {
 		         .Enter_Password(password)
 	           	 .Click_Login_Button()
 				 .Verifiy_toast_message(scenario, name, role)
-				 .Open_Administration()
+				 .Click_on_Administration()
 				 .Click_on_Applications()
 				 .Click_on_Application_Templates(operation,templeNaming)
 				 .Click_on_Add_Template_Button()

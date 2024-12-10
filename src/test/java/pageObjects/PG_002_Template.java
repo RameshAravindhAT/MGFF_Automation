@@ -73,6 +73,10 @@ public class PG_002_Template extends BaseClass {
 	@FindBy(xpath = "//span[normalize-space()='Application Batches']")
 	public WebElement applicationbatch;
 	
+	
+	
+    @FindBy(css = "#applicationsSubmenu > .nav-item:nth-child(2) span")
+    public WebElement batchLinkSubMenuButton;
 
 
 	public PG_002_Template Click_on_Applications() {
@@ -433,5 +437,29 @@ public class PG_002_Template extends BaseClass {
 		}
 		return new PG_004_CreateNewBatch(TestContext.getDriver());
 	}
+	
+
+	
+	    public PG_007_ApplicationBatch clickBatchLinkSubMenuButton() {
+	        String methodName = Thread.currentThread().getStackTrace()[1].getMethodName().replace("_", " ");
+	        try {
+	            batchLinkSubMenuButton.click();
+	            ExtentReportManager.reportStep(methodName, "pass");
+	            TestContext.getLogger().info(methodName);
+	        } catch (Exception e) {
+	            ExtentReportManager.reportStep(methodName, "fail");
+	            TestContext.getLogger().error(methodName);
+	            e.printStackTrace();
+	        }
+	        return new PG_007_ApplicationBatch(TestContext.getDriver());
+	    }
+	
+	 public PG_006_ApplicationFormFilling scrollPageDown() {
+	    	TestContext.getJsExecutor().scrollByPixels(0, 500);  // Scroll down 500px
+	    	TestContext.getJsExecutor().scrollToBottom();
+	        ExtentReportManager.reportStep("Scrolled the page down", "pass");
+	        TestContext.getLogger().info("Scrolled the page down");
+	        return new PG_006_ApplicationFormFilling(TestContext.getDriver());
+	    }
 	}
 		
